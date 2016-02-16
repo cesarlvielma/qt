@@ -1,0 +1,30 @@
+Initialization With AccountToken
+## StatusManager
+while(1){ // some main loop to check status 
+Account account = DataManager.fullLoadAccount();
+if(!account.hasToken)
+{
+    getAccountToken(); // managed by task manager 
+}
+else
+{
+   break;
+}
+}
+
+
+## getAccountToken
+byte mac[6];
+WiFi.macAddress(mac);
+STRING MASTER_TOKEN = getMasterToken(); // this should be a company token. some 40 lentght chars.
+
+STRING url = // the url of backend. 
+STRING JSON = //theJSONToPoST with mac string and TOKEN
+
+JSON retunred = httpPost(url,JSON); // result status and informationG iven
+account.token = getAccountToken(returned); // get the account token string from the response. if it is retarunign properly 
+
+
+// if not returned properly it should 
+account.hasToken = true;
+DataManager.save(account);
